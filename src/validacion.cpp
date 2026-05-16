@@ -6,7 +6,7 @@ void limpiarBuffer() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
-// Leer opción del menú
+// Leer opcion del menu
 int leerOpcionMenu(int min, int max) {
     int opcion;
     while (true) {
@@ -16,7 +16,7 @@ int leerOpcionMenu(int min, int max) {
             return opcion;
         }
         limpiarBuffer();
-        cout << "Error: Opción inválida.\n";
+        cout << "Error: Opcion invalida.\n";
     }
 }
 
@@ -29,7 +29,7 @@ int leerEntero(int min) {
             return valor;
         }
         limpiarBuffer();
-        cout << "Error: Ingrese número >= " << min << ": ";
+        cout << "Error: Ingrese numero >= " << min << ": ";
     }
 }
 
@@ -37,7 +37,7 @@ int leerEntero(int min) {
 bool leerBooleano(const string& contexto) {
     int valor;
     while (true) {
-        cout << contexto << " (1=Sí, 0=No): ";
+        cout << contexto << " (1=Si, 0=No): ";
         if (cin >> valor && (valor == 0 || valor == 1)) {
             limpiarBuffer();
             return valor == 1;
@@ -63,13 +63,13 @@ string leerStringNoVacio(const string& campo) {
 
 // Leer cadena para verificación
 string leerCadenaVerificacion() {
-    cout << "Cadena a verificar (Enter para vacía): ";
+    cout << "Cadena a verificar (Enter para vacia): ";
     string cadena;
     getline(cin, cadena);
     return cadena;
 }
 
-// Obtener índice de estado
+// Obtener indice de estado
 int obtenerIndiceEstado(AFD* afd, const string& nombre) {
     for (int i = 0; i < afd->getTotalEstados(); i++) {
         if (afd->getEstados()[i] == nombre) return i;
@@ -91,7 +91,7 @@ string leerNombreEstado(AFD* afd, const string& contexto) {
             mostrarEstados(afd);
         } else {
             limpiarBuffer();
-            cout << "Error: Nombre inválido.\n";
+            cout << "Error: Nombre invalido.\n";
         }
     }
 }

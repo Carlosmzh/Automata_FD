@@ -1,6 +1,6 @@
 #include "../include/cargar_archivo.h"
 
-// Función para dividir cadena por delimitador
+// Funcion para dividir cadena por delimitador
 vector<string> split(const string& cadena, char delimitador) {
     vector<string> partes;
     stringstream ss(cadena);
@@ -38,7 +38,7 @@ bool cargarAFDDesdeArchivo(AFD& afd, const string& nombreArchivo) {
     while (getline(archivo, linea)) {
         numeroLinea++;
         
-        // Ignorar líneas vacías y comentarios
+        // Ignorar lineas vacias y comentarios
         if (linea.empty() || linea[0] == '#') continue;
         
         vector<string> partes = split(linea, '|');
@@ -50,7 +50,7 @@ bool cargarAFDDesdeArchivo(AFD& afd, const string& nombreArchivo) {
         if (comando == "ALFABETO") {
             for (size_t i = 1; i < partes.size(); i++) {
                 if (partes[i].length() != 1) {
-                    cerr << "Error línea " << numeroLinea << ": Símbolo inválido\n";
+                    cerr << "Error linea " << numeroLinea << ": Simbolo invalido\n";
                     archivo.close();
                     return false;
                 }
@@ -72,7 +72,7 @@ bool cargarAFDDesdeArchivo(AFD& afd, const string& nombreArchivo) {
         // Comando INICIAL
         else if (comando == "INICIAL") {
             if (partes.size() != 2) {
-                cerr << "Error línea " << numeroLinea << ": Formato: INICIAL|nombre\n";
+                cerr << "Error linea " << numeroLinea << ": Formato: INICIAL|nombre\n";
                 archivo.close();
                 return false;
             }
@@ -81,7 +81,7 @@ bool cargarAFDDesdeArchivo(AFD& afd, const string& nombreArchivo) {
         // Comando TRANSICION
         else if (comando == "TRANSICION") {
             if (partes.size() != 4) {
-                cerr << "Error línea " << numeroLinea << ": Formato: TRANSICION|origen|símbolo|destino\n";
+                cerr << "Error linea " << numeroLinea << ": Formato: TRANSICION|origen|simbolo|destino\n";
                 archivo.close();
                 return false;
             }
@@ -93,7 +93,7 @@ bool cargarAFDDesdeArchivo(AFD& afd, const string& nombreArchivo) {
             afd.agregarTransicion(partes[1], partes[2][0], partes[3]);
         }
         else {
-            cerr << "Error línea " << numeroLinea << ": Comando '" << comando << "' desconocido\n";
+            cerr << "Error linea " << numeroLinea << ": Comando '" << comando << "' desconocido\n";
             archivo.close();
             return false;
         }
@@ -107,7 +107,7 @@ bool cargarAFDDesdeArchivo(AFD& afd, const string& nombreArchivo) {
 // Cargar AFD de ejemplo hardcodeado
 void cargarAFDHardcodeado(AFD& afd) {
     cout << "\nCargando AFD de ejemplo: a*b*\n";
-    cout << "(Acepta cadenas con cero o más 'a' seguidas de cero o más 'b')\n";
+    cout << "(Acepta cadenas con cero o mas 'a' seguidas de cero o mas 'b')\n";
     
     afd.agregarSimboloAlfabeto('a');
     afd.agregarSimboloAlfabeto('b');

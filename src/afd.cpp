@@ -88,7 +88,7 @@ void AFD::recrearTablaTransiciones() {
     }
 }
 
-// Obtener índice de estado
+// Obtener indice de estado
 int AFD::obtenerIndiceEstado(const string& nombre) const {
     for (int i = 0; i < totalEstados; i++) {
         if (estados[i] == nombre) return i;
@@ -96,7 +96,7 @@ int AFD::obtenerIndiceEstado(const string& nombre) const {
     return -1;
 }
 
-// Obtener índice de símbolo
+// Obtener indice de simbolo
 int AFD::obtenerIndiceSimbol(char simbolo) const {
     for (int i = 0; i < totalSimbolos; i++) {
         if (alfabeto[i] == simbolo) return i;
@@ -166,10 +166,10 @@ bool AFD::establecerEstadoInicial(const string& nombre) {
     return true;
 }
 
-// Agregar símbolo al alfabeto
+// Agregar simbolo al alfabeto
 bool AFD::agregarSimboloAlfabeto(char simbolo) {
     if (obtenerIndiceSimbol(simbolo) != -1) {
-        cerr << "Error: Símbolo '" << simbolo << "' ya existe.\n";
+        cerr << "Error: Simbolo '" << simbolo << "' ya existe.\n";
         return false;
     }
     
@@ -203,7 +203,7 @@ bool AFD::agregarTransicion(const string& desde, char simbolo, const string& hac
     
     int idxSimbolo = obtenerIndiceSimbol(simbolo);
     if (idxSimbolo == -1) {
-        cerr << "Error: Símbolo '" << simbolo << "' no en alfabeto.\n";
+        cerr << "Error: Simbolo '" << simbolo << "' no en alfabeto.\n";
         return false;
     }
     
@@ -228,7 +228,7 @@ bool AFD::verificarCadena(const string& cadena) {
     for (char simbolo : cadena) {
         int idxSimbolo = obtenerIndiceSimbol(simbolo);
         if (idxSimbolo == -1) {
-            cerr << "Error: Símbolo '" << simbolo << "' no válido.\n";
+            cerr << "Error: Simbolo '" << simbolo << "' no valido.\n";
             return false;
         }
         
@@ -285,7 +285,7 @@ void AFD::mostrarConfiguracionAFD() const {
 // Mostrar tabla de transiciones
 void AFD::mostrarTablaTransiciones() const {
     if (estaVacio()) {
-        cout << "AFD vacío.\n";
+        cout << "AFD vacio.\n";
         return;
     }
     

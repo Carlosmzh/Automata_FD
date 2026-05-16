@@ -4,12 +4,12 @@
 
 void mostrarMenuPrincipal() {
     cout << "\n" << string(60, '=') << endl;
-    cout << "VERIFICADOR DE CADENAS - AFD (Autómata Finito Determinístico)" << endl;
+    cout << "VERIFICADOR DE CADENAS - AFD (Automata Finito Deterministico)" << endl;
     cout << string(60, '=') << endl;
     cout << "1. Crear nuevo AFD manualmente\n";
     cout << "2. Cargar AFD desde archivo\n";
     cout << "3. Cargar AFD de ejemplo\n";
-    cout << "4. Mostrar configuración del AFD\n";
+    cout << "4. Mostrar configuracion del AFD\n";
     cout << "5. Mostrar tabla de transiciones\n";
     cout << "6. Verificar cadena\n";
     cout << "0. Salir\n";
@@ -19,25 +19,25 @@ void mostrarMenuPrincipal() {
 void crearAFDManual(AFD& afd) {
     cout << "\n--- CREAR AFD MANUALMENTE ---\n";
     
-    // Agregar símbolos al alfabeto
-    cout << "\nPaso 1: Agregar símbolos al alfabeto\n";
+    // Agregar simbolos al alfabeto
+    cout << "\nPaso 1: Agregar simbolos al alfabeto\n";
     cout << "Ingrese 'x' cuando termine\n";
     while (true) {
-        cout << "Símbolo: ";
+        cout << "Simbolo: ";
         string input;
         cin >> input;
         limpiarBuffer();
         
         if (input == "x" || input == "X") break;
         if (input.length() != 1) {
-            cout << "Error: Ingrese un solo carácter.\n";
+            cout << "Error: Ingrese un solo caracter.\n";
             continue;
         }
         afd.agregarSimboloAlfabeto(input[0]);
     }
     
     if (afd.getTotalSimbolos() == 0) {
-        cout << "Error: Debe agregar al menos un símbolo.\n";
+        cout << "Error: Debe agregar al menos un simbolo.\n";
         return;
     }
     
@@ -76,7 +76,7 @@ void crearAFDManual(AFD& afd) {
     
     // Agregar transiciones
     cout << "\nPaso 5: Agregar transiciones\n";
-    cout << "Formato: origen - símbolo - destino\n";
+    cout << "Formato: origen - simbolo - destino\n";
     cout << "Ingrese 'x' cuando termine\n\n";
     
     while (true) {
@@ -84,7 +84,7 @@ void crearAFDManual(AFD& afd) {
         string origen = leerNombreEstado(&afd, "Estado origen (o 'x' para terminar)");
         if (origen == "x" || origen == "X") break;
         
-        cout << "Símbolos disponibles: { ";
+        cout << "Simbolos disponibles: { ";
         for (int i = 0; i < afd.getTotalSimbolos(); i++) {
             cout << afd.getAlfabeto()[i];
             if (i < afd.getTotalSimbolos() - 1) cout << ", ";
@@ -97,7 +97,7 @@ void crearAFDManual(AFD& afd) {
         limpiarBuffer();
         
         if (simboloStr.length() != 1) {
-            cout << "Error: Ingrese un solo símbolo.\n";
+            cout << "Error: Ingrese un solo simbolo.\n";
             continue;
         }
         
@@ -114,11 +114,9 @@ int main() {
     bool afdCargado = false;
     AFD* afd = nullptr;
     
-    cout << "\n╔════════════════════════════════════════════════════════════╗\n";
-    cout << "║                                                            ║\n";
-    cout << "║   VERIFICADOR DE CADENAS - AUTÓMATA FINITO DETERMINÍSTICO ║\n";
-    cout << "║                                                            ║\n";
-    cout << "╚════════════════════════════════════════════════════════════╝\n";
+    cout << "\n" << string(62, '=') << endl;
+    cout << "VERIFICADOR DE CADENAS - AUTOMATA FINITO DETERMINISTICO" << endl;
+    cout << string(62, '=') << "\n";
     
     do {
         mostrarMenuPrincipal();
@@ -201,19 +199,19 @@ int main() {
                     cout << "\n" << string(50, '-') << endl;
                     cout << "Cadena: \"" << cadena << "\"\n";
                     if (resultado) {
-                        cout << "Resultado: ACEPTADA ✓\n";
+                        cout << "Resultado: ACEPTADA [OK]\n";
                     } else {
-                        cout << "Resultado: RECHAZADA ✗\n";
+                        cout << "Resultado: RECHAZADA [NO]\n";
                     }
                     cout << string(50, '-') << "\n";
                     
-                    seguirVerificando = leerBooleano("¿Verificar otra cadena?");
+                    seguirVerificando = leerBooleano("Verificar otra cadena?");
                 }
                 break;
             }
             
             case 0: {
-                cout << "\nGracias por usar el verificador de AFD. ¡Hasta luego!\n\n";
+                cout << "\nGracias por usar el verificador de AFD. Hasta luego!\n\n";
                 break;
             }
         }
