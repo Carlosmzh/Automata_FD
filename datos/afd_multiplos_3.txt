@@ -1,0 +1,16 @@
+# AFD que reconoce números binarios múltiplos de 3
+# Acepta cadenas binarias cuyo valor es divisible por 3
+# Ejemplos aceptados: "0", "11", "110", "1001", "1111", "1100"
+# Ejemplos rechazados: "1", "10", "101", "100"
+
+ALFABETO|0|1
+ESTADO|q0|1
+ESTADO|q1|0
+ESTADO|q2|0
+INICIAL|q0
+TRANSICION|q0|0|q0
+TRANSICION|q0|1|q1
+TRANSICION|q1|0|q2
+TRANSICION|q1|1|q0
+TRANSICION|q2|0|q1
+TRANSICION|q2|1|q2
