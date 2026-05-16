@@ -1,0 +1,15 @@
+# AFD que reconoce: a*b*
+# Acepta cadenas con cero o más 'a' seguidas de cero o más 'b'
+# Ejemplos aceptados: "", "a", "b", "aa", "ab", "aab", "aabb", "bb"
+# Ejemplos rechazados: "ba", "aba", "bab"
+
+ALFABETO|a|b
+ESTADO|q0|1
+ESTADO|q1|0
+ESTADO|q2|1
+INICIAL|q0
+TRANSICION|q0|a|q1
+TRANSICION|q0|b|q2
+TRANSICION|q1|a|q1
+TRANSICION|q1|b|q2
+TRANSICION|q2|b|q2

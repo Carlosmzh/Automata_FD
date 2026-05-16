@@ -1,0 +1,13 @@
+# AFD que reconoce números binarios pares
+# Acepta cadenas binarias que terminan en 0
+# Ejemplos aceptados: "0", "10", "100", "110", "1010"
+# Ejemplos rechazados: "1", "11", "101", "111"
+
+ALFABETO|0|1
+ESTADO|q0|1
+ESTADO|q1|0
+INICIAL|q0
+TRANSICION|q0|0|q1
+TRANSICION|q0|1|q0
+TRANSICION|q1|0|q1
+TRANSICION|q1|1|q0
