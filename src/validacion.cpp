@@ -84,6 +84,10 @@ string leerNombreEstado(AFD* afd, const string& contexto) {
         cout << contexto << ": ";
         if (cin >> nombre && !nombre.empty()) {
             limpiarBuffer();
+            // Permitir 'x' como terminador sin validar
+            if (nombre == "x" || nombre == "X") {
+                return nombre;
+            }
             if (obtenerIndiceEstado(afd, nombre) != -1) {
                 return nombre;
             }

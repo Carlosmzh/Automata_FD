@@ -66,10 +66,15 @@ void crearAFDManual(AFD& afd) {
     afd.establecerEstadoInicial(estadoInicial);
     
     // Agregar estados finales
-    cout << "\nPaso 4: Marcar estados finales\n";
+    cout << "\nPaso 4: Marcar estados finales (opcional)\n";
+    cout << "Si desea estados finales, ingrese el nombre. Ingrese 'x' para terminar.\n";
     while (true) {
         mostrarEstados(&afd);
-        string estadoFinal = leerNombreEstado(&afd, "Estado final (o 'x' para terminar)");
+        cout << "Estado final (o 'x' para terminar): ";
+        string estadoFinal;
+        cin >> estadoFinal;
+        limpiarBuffer();
+        
         if (estadoFinal == "x" || estadoFinal == "X") break;
         afd.agregarEstadoFinal(estadoFinal);
     }
@@ -77,8 +82,9 @@ void crearAFDManual(AFD& afd) {
     // Agregar transiciones
     cout << "\nPaso 5: Agregar transiciones\n";
     cout << "Formato: origen - simbolo - destino\n";
-    cout << "Ingrese 'x' cuando termine\n\n";
+    cout << "Ingrese 'x' como origen cuando termine.\n\n";
     
+    int transicionesAgregadas = 0;
     while (true) {
         mostrarEstados(&afd);
         string origen = leerNombreEstado(&afd, "Estado origen (o 'x' para terminar)");
@@ -92,7 +98,7 @@ void crearAFDManual(AFD& afd) {
         cout << " }\n";
         
         string simboloStr;
-        cout << "Símbolo: ";
+        cout << "Simbolo: ";
         cin >> simboloStr;
         limpiarBuffer();
         
@@ -102,8 +108,16 @@ void crearAFDManual(AFD& afd) {
         }
         
         string destino = leerNombreEstado(&afd, "Estado destino");
-        afd.agregarTransicion(origen, simboloStr[0], destino);
-        cout << "Transición agregada.\n\n";
+        if (afd.agregarTransicion(origen, simboloStr[0], destino)) {
+            transicionesAgregadas++;
+            cout << "Transicion agregada correctamente.\n\n";
+        } else {
+            cout << "Error: No se pudo agregar la transicion. Verifique los datos.\n\n";
+        }
+    }
+    
+    if (transicionesAgregadas == 0) {
+        cout << "\nAdvertencia: No agrego ninguna transicion. El AFD podria no funcionar correctamente.\n";
     }
     
     cout << "\nAFD creado correctamente.\n";
@@ -134,24 +148,23 @@ int main() {
             
             case 2: {
                 // Cargar AFD desde archivo
-                if (!afdCargado) {
-                    afd = new AFD();
-                    afdCargado = true;
-                } else {
-                    delete afd;
-                    afd = new AFD();
-                }
-                
                 string ruta;
                 cout << "\nRuta del archivo (default: datos/afd_ejemplo_simple.txt): ";
-                cin.ignore();
                 getline(cin, ruta);
                 
                 if (ruta.empty()) {
                     ruta = "datos/afd_ejemplo_simple.txt";
                 }
                 
-                cargarAFDDesdeArchivo(*afd, ruta);
+                AFD* nuevoAFD = new AFD();
+                if (cargarAFDDesdeArchivo(*nuevoAFD, ruta)) {
+                    if (afd) delete afd;
+                    afd = nuevoAFD;
+                    afdCargado = true;
+                } else {
+                    delete nuevoAFD;
+                    cout << "Intente con otra ruta o verifique el formato del archivo.\n";
+                }
                 break;
             }
             
